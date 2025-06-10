@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Travellers for {{ trip.destination }}{% endblock %}
+
+{% block content %}
+    <h1>Travellers for Trip to {{ trip.destination }}</h1>
+
+    <a href="{{ url_for('add_traveller_form', trip_id=trip.id) }}">
+        <button type="button" style="margin-bottom: 1em;">Add Traveller</button>
+    </a>
+
+    {% if travellers %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Nationality</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Paid?</th>
+                <th>Created</th>
+                <th>Updated</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for t in travellers %}
+            <tr>
+                <td>{{ t.id }}</td>
+                <td>{{ t.name }}</td>
+                <td>{{ t.nationality }}</td>
+                <td>{{ t.email }}</td>
+                <td>{{ t.phone }}</td>
+                <td>{{ "Yes" if t.hasPaid else "No" }}</td>
+                <td>{{ t.created_at.strftime("%Y-%m-%d %H:%M") }}</td>
+                <td>{{ t.updated_at.strftime("%Y-%m-%d %H:%M") }}</td>
+                <td>
+                    <a href="{{ url_for('edit_traveller', traveller_id=t.id) }}">
+                        <button type="button">Edit</button>
+                    </a>
+                    <a href="{{ url_for('delete_traveller_form', traveller_id=t.id) }}">
+                        <button type="submit" onclick="return confirm('Delete this traveller?');">Delete</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No travellers found for this trip.</p>
+    {% endif %}
+    <br>
+{% endblock %}

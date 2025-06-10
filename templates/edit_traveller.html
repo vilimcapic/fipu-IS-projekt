@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Edit Traveller{% endblock %}
+
+{% block content %}
+    <h1>Edit Traveller</h1>
+    <form method="post">
+        <label>Name:
+            <input type="text" name="name" value="{{ traveller.name }}" required>
+        </label><br><br>
+        <label>Nationality:
+            <input type="text" name="nationality" value="{{ traveller.nationality }}" required>
+        </label><br><br>
+        <label>Email:
+            <input type="email" name="email" value="{{ traveller.email }}" required>
+        </label><br><br>
+        <label>Phone:
+            <input type="text" name="phone" value="{{ traveller.phone }}" required>
+        </label><br><br>
+        <label>Has Paid?
+            <select name="hasPaid">
+                <option value="true" {% if traveller.hasPaid %}selected{% endif %}>Yes</option>
+                <option value="false" {% if not traveller.hasPaid %}selected{% endif %}>No</option>
+            </select>
+        </label><br><br>
+        <button type="submit">Save Changes</button>
+    </form>
+    <br>
+    <a href="{{ url_for('view_travellers', trip_id=traveller.trip.id) }}">← Back to Travellers</a>
+{% endblock %}

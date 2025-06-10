@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Add Trip{% endblock %}
+
+{% block content %}
+    <h1>Add a New Trip</h1>
+    <form action="/trips/new" method="post">
+        <label>Destination:
+            <input type="text" name="destination" required>
+        </label>
+        <label>Price (€):
+            <input type="number" name="price" step="0.01" required>
+        </label>
+        <label>Length in Days:
+            <input type="number" name="length_in_days" required>
+        </label>
+        <label>Departure Date:
+            <input type="datetime-local" name="departure_date" required>
+        </label>
+        <label>Return Date:
+            <input type="datetime-local" name="return_date" required>
+        </label>
+        <button type="submit">Create Trip</button>
+    </form>
+{% endblock %}

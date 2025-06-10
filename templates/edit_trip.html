@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Edit Trip{% endblock %}
+
+{% block content %}
+    <h1>Edit Trip</h1>
+    <form method="post">
+        <label>Destination:
+            <input type="text" name="destination" value="{{ trip.destination }}" required>
+        </label><br>
+        <label>Price (€):
+            <input type="number" name="price" step="0.01" value="{{ trip.price }}" required>
+        </label><br>
+        <label>Length in Days:
+            <input type="number" name="length_in_days" value="{{ trip.length_in_days }}" required>
+        </label><br>
+        <label>Departure Date:
+            <input type="datetime-local" name="departure_date" value="{{ trip.departure_date.strftime('%Y-%m-%dT%H:%M') }}" required>
+        </label><br>
+        <label>Return Date:
+            <input type="datetime-local" name="return_date" value="{{ trip.return_date.strftime('%Y-%m-%dT%H:%M') }}" required>
+        </label><br>
+        <label>Is Full?
+            <select name="isFull">
+                <option value="false" {% if not trip.isFull %}selected{% endif %}>No</option>
+                <option value="true" {% if trip.isFull %}selected{% endif %}>Yes</option>
+            </select>
+        </label><br>
+        <button type="submit">Save Changes</button>
+    </form>
+{% endblock %}

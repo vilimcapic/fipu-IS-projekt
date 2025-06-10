@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Add Traveller{% endblock %}
+
+{% block content %}
+<h1>Add Traveller</h1>
+<form method="post" action="{{ url_for('add_traveller_form', trip_id=trip_id) }}">
+    <label>Name:
+        <input type="text" name="name" required>
+    </label><br>
+    <label>Nationality:
+        <input type="text" name="nationality" required>
+    </label><br>
+    <label>Email:
+        <input type="email" name="email" required>
+    </label><br>
+    <label>Phone:
+        <input type="text" name="phone">
+    </label><br>
+    <label>Has Paid?
+        <select name="hasPaid">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+        </select>
+    </label><br>
+    <button type="submit">Add Traveller</button>
+</form>
+{% endblock %}
