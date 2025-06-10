@@ -32,10 +32,9 @@ class Traveller(DB.Entity):
 
 DB.bind(provider='sqlite', filename='database.sqlite', create_db=True)
 DB.generate_mapping(create_tables=True)
-
 @app.route("/")
 def home():
-    return "Hello, Flask!"
+    return redirect(url_for("get_trips"))
 
 @app.route("/trips", methods=["POST"])
 @orm.db_session
@@ -399,4 +398,4 @@ def edit_trip(trip_id):
     return render_template("edit_trip.html", trip=trip)
 
 if (__name__ == "__main__"):
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=8080, debug=True)
